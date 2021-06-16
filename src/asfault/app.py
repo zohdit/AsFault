@@ -73,6 +73,7 @@ def ensure_environment(env_dir):
     read_environment(env_dir)
 
 
+# TODO Add variable for BNG_USER and BNG_HOME
 @click.group()
 @click.option('--log', type=click.Path(dir_okay=False), default=DEFAULT_LOG)
 def cli(log):

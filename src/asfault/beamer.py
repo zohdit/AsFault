@@ -496,7 +496,7 @@ def nodes_to_coords(nodes):
     return coords
 
 class TestRunner:
-    def __init__(self, test, test_dir, host, port, beamng_process=None, plot=False, ctrl=None):
+    def __init__(self, test, test_dir, host, port, beamng_home, beamng_user, plot=False, ctrl=None):
         self.test = test
         self.host = host
         self.port = port
@@ -535,12 +535,13 @@ class TestRunner:
         self.total_elapsed_time = None
 
         self.brewer: BeamNGBrewer = None
-        self.beamng_home = c.ex.beamng_home
-        self.beamng_user = "Alessio"
+
+        self.beamng_home = beamng_home
+        self.beamng_user = beamng_user
 
         self.oob_tolerance = 0.95
         self.model = None
-        self.model_file = "D:\\tara\\AsFault\\models\\self-driving-car-178-2020.h5"#c.ex.model_file
+        self.model_file = "C:\\AsFault\\models\\self-driving-car-178-2020.h5"#c.ex.model_file
 
 
     def normalise_path(self, path):
@@ -958,7 +959,8 @@ class TestRunner:
             self.brewer = None
 
 
-
+BNG_HOME = "C:\\BeamNG.research.v1.7.0.1"
+BNG_USER = "C:\\BeamNG.research_userpath"
 BEAMNG_PROCESS = None
 
 def gen_beamng_runner_factory(level_dir, host, port, plot=False, ctrl=None):
@@ -970,7 +972,7 @@ def gen_beamng_runner_factory(level_dir, host, port, plot=False, ctrl=None):
     def factory(test):
         # Make sure that all the Test Runners will share the same instance of BeamNG. If the instance is null, each
         # process will start its runner will start its own instance...
-        runner = TestRunner(test, level_dir, host, port, beamng_process=BEAMNG_PROCESS, plot=plot, ctrl=ctrl)
+        runner = TestRunner(test, level_dir, host, port, BNG_HOME, BNG_USER, plot=plot, ctrl=ctrl)
 
         return runner
     return factory

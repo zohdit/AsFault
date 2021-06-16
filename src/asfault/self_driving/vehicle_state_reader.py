@@ -44,8 +44,7 @@ class VehicleStateReader:
 
         self.vehicle.update_vehicle()
         st = self.vehicle.state
-
-        ele = sensors['electrics']['values']
+        ele = sensors['electrics']
         gforces = sensors['gforces']
 
         vel = tuple(st['vel'])

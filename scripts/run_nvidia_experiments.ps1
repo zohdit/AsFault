@@ -36,7 +36,7 @@ Foreach-Object {
             
             # Execute the experiment from the right folder
             #cd C:\Users\Alessio\AsFault\
-            python.exe D:\tara\AsFault\src\asfault\app.py --log $log evolve --env $environmentDir ext --generations $generations --time-limit $timeLimit --use-simulation-time --render BeamNG
+            py.exe C:\AsFault\src\asfault\app.py --log $log evolve --env $environmentDir ext --generations $generations --time-limit $timeLimit --use-simulation-time --render BeamNG
             #$wrapperScript
             #cd C:\Users\Alessio\AsFault\scripts
         }

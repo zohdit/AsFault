@@ -366,7 +366,7 @@ def deap_experiment(seed, budget, factory, time_limit=-1, use_simulation_time=Tr
         evaluator = LaneDistanceEvaluator()
     # elif c.ev.evaluator == 'curvature_entropy':
     #     evaluator = CurvatureEntropyEvaluator()
-    # elif c.ev.evaluator == 'spped_entropy':
+    # elif c.ev.evaluator == 'speed_entropy':
     #     evaluator = SpeedEntropyEvaluator()
     else:
         raise Exception("Missing Fitness Function")
@@ -457,6 +457,7 @@ def deap_experiment(seed, budget, factory, time_limit=-1, use_simulation_time=Tr
 
     # This is mostly to enable random generation
     def replace_with_random_individuals(target_pop_size, current_population, previous_population):
+        l.info("Replacing current population with a random one")
         current_population.clear()
         random_population = toolbox.population(target_pop_size)
         for ind in random_population:
@@ -474,7 +475,7 @@ def deap_experiment(seed, budget, factory, time_limit=-1, use_simulation_time=Tr
     elif c.ev.pop_merger == 'replace_with_random':
         toolbox.register("merge_populations", replace_with_random_individuals, c.ev.pop_size)
     else:
-        raise Exception("Merge populations not defined")
+        raise Exception("Merge populations not defined " + str(c.ev.pop_merger))
 
     # Execute the experiments using run_experiment and output the results
     out_file = c.rg.get_results_path()
